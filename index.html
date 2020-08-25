@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .process_gif {
+            /*显示动态barh*/
+            background-image: url("./beibei.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 auto;
+            width: 370px;
+            height: 220px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .show_txt {
+            /*显示文字*/
+            margin: 0 auto;
+            background-color: azure;
+            width: 370px;
+            height: 200px;
+            position: relative;
+            text-align: center;
+            padding-top: 10px;
+            z-index: 1;
+        }
+        .merry-go-round{
+            background-image: url("./merry-go-round.gif");
+            background-repeat: no-repeat;
+            background-size: cover;
+            margin: 0 auto;
+            width: 370px;
+            height: 220px;
+            position: relative;
+            z-index: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="process_gif" id="process"></div> 
+    <div class="show_txt" id="content_1"></div>
+    <div class="merry-go-round" id="merry-go-round"></div>
+    <script type="text/javascript">
+        /// 显示文字功能 ----------------------------------
+        let divTyping = document.getElementById('content_1'); //通过id获取div节点
+        let a = 0;
+        timer = 0;
+        str = "第一次知道你是在第一季的《偶像练习生》，已经949天了 <br>后来因你而感动 <br>我成为一颗默默支持你的珍珠糖 <br>从守护才知道真正的你<br>谢谢你给我力量，信仰的力量";
+        function typing () {
+         if (a <= str.length) { // 从第一个字开始逐个打印
+            divTyping.innerHTML = str.slice(0, a++) + '_';
+          timer = setTimeout(typing, 200); // 设置打印时间间隔
+         }
+         else {
+          divTyping.innerHTML = str; //结束打字,移除 _ 光标
+            clearTimeout(timer);
+         }
+        }
+        
+        window.onload=function(){
+          typing();
+          setTimeout(function(){
+                    thisdiv = document.getElementById("process");
+                    thisdiv1 = document.getElementById("merry-go-round");
+           thisdiv.style.backgroundImage = url("./process_stop.png"); //将div背景图替换
+               },2000); //单位是毫秒，根据动态图的时长来设置
+        }
+       </script>
+</body>
+
+</html>
